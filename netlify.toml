@@ -1,9 +1,10 @@
 [build]
   publish = "build"
-  command = "npm run build"
-
+  command = "npm install && npm run build"
+  
 [build.environment]
   NODE_VERSION = "18"
+  CI = "false"
 
 [[redirects]]
   from = "/*"
@@ -11,9 +12,11 @@
   status = 200
 
 [context.production.environment]
+  CI = "false"
   REACT_APP_SUPABASE_URL = "tu_supabase_url_produccion"
   REACT_APP_SUPABASE_ANON_KEY = "tu_supabase_anon_key_produccion"
 
 [context.deploy-preview.environment]
+  CI = "false"
   REACT_APP_SUPABASE_URL = "tu_supabase_url_staging"
   REACT_APP_SUPABASE_ANON_KEY = "tu_supabase_anon_key_staging"
